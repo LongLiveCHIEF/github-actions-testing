@@ -1,0 +1,16 @@
+name: Event Payloads
+
+on:
+  release:
+    types: [released, prereleased]
+
+jobs:
+  log:
+    runs-on: ubuntu-latest
+
+    steps:
+      -
+        name: Display github.event payload
+        env:
+          GITHUB_EVENT_CONTEXT: ${{ toJson(github.event) }}
+        run: echo "$GITHUB_EVENT_CONTEXT"
